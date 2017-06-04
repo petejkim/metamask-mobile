@@ -14,23 +14,23 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "Nabi.app"
-               BlueprintName = "Nabi"
-               ReferencedContainer = "container:Nabi.xcodeproj">
+               BlueprintIdentifier = "83CBBA2D1A601D0E00E9B192"
+               BuildableName = "libReact.a"
+               BlueprintName = "React"
+               ReferencedContainer = "container:../node_modules/react-native/React/React.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "NabiTests.xctest"
-               BlueprintName = "NabiTests"
+               BlueprintIdentifier = "E99BB9EB1EE411AA00915720"
+               BuildableName = "Nabi.app"
+               BlueprintName = "Nabi"
                ReferencedContainer = "container:Nabi.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -46,9 +46,19 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "00E356ED1AD99517003FC87E"
+               BlueprintIdentifier = "E99BB9FF1EE411AA00915720"
                BuildableName = "NabiTests.xctest"
                BlueprintName = "NabiTests"
+               ReferencedContainer = "container:Nabi.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "E99BBA0A1EE411AA00915720"
+               BuildableName = "NabiUITests.xctest"
+               BlueprintName = "NabiUITests"
                ReferencedContainer = "container:Nabi.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -56,7 +66,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
+            BlueprintIdentifier = "E99BB9EB1EE411AA00915720"
             BuildableName = "Nabi.app"
             BlueprintName = "Nabi"
             ReferencedContainer = "container:Nabi.xcodeproj">
@@ -79,7 +89,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
+            BlueprintIdentifier = "E99BB9EB1EE411AA00915720"
             BuildableName = "Nabi.app"
             BlueprintName = "Nabi"
             ReferencedContainer = "container:Nabi.xcodeproj">
@@ -98,7 +108,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
+            BlueprintIdentifier = "E99BB9EB1EE411AA00915720"
             BuildableName = "Nabi.app"
             BlueprintName = "Nabi"
             ReferencedContainer = "container:Nabi.xcodeproj">
