@@ -1,19 +1,26 @@
-const bootstrapMetaMaskBackground = function (window, document) {
-  const port = (name) => {
-    let disconnectListeners = []
-    let messageListeners = []
+// @flow
+import type { Window } from '../types'
 
-    const messageHandler = (evt) => {
+type PortListener = any => void
+
+const bootstrapMetaMaskBackground = function (window: Window, document: Document) {
+  const makePort = function (name: string) {
+    let disconnectListeners: PortListener[] = []
+    let messageListeners: PortListener[] = []
+
+    const messageHandler = function (evt: CustomEvent): void {
       if (evt.detail.from === name) {
-        messageListeners.forEach((listener) => {
+        messageListeners.forEach(function (listener) {
           listener(evt.detail.data)
         })
       }
     }
 
-    const disconnectHandler = (evt) => {
+    const disconnectHandler = function (evt: CustomEvent): void {
       if (evt.detail.name === name) {
-        disconnectListeners.forEach((listener) => listener())
+        disconnectListeners.forEach(function (listener) {
+          listener(evt.detail.data)
+        })
         window.removeEventListener('port:disconnect', disconnectHandler, false)
         window.removeEventListener('port:message', messageHandler, false)
         disconnectListeners = []
@@ -28,18 +35,18 @@ const bootstrapMetaMaskBackground = function (window, document) {
       name,
 
       onDisconnect: {
-        addListener (listener) {
+        addListener (listener: PortListener): void {
           disconnectListeners.push(listener)
         }
       },
 
       onMessage: {
-        addListener (listener) {
+        addListener (listener: PortListener): void {
           messageListeners.push(listener)
         }
       },
 
-      postMessage (message) {
+      postMessage (message: any): void {
         window.webkit.messageHandlers.reactNative.postMessage({
           to: name,
           data: message
@@ -50,33 +57,35 @@ const bootstrapMetaMaskBackground = function (window, document) {
 
   window.browser = {
     browserAction: {
-      setBadgeText ({ text }) {
+      setBadgeText ({ text }: { text: string }): void {
         console.log('setBadgeText:', text)
       },
 
-      setBadgeBackgroundColor ({ color }) {
+      setBadgeBackgroundColor ({ color }: { color: string }): void {
         console.log('setBadgeBackgroundColor:', color)
       }
     },
 
     runtime: {
       onConnect: {
-        addListener (listener) {
+        addListener (listener: PortListener): void {
           window.addEventListener('port:connect', function (evt) {
-            listener(port(evt.detail.name))
+            listener(makePort(evt.detail.name))
           }, false)
         }
       },
 
       onInstalled: {
-        addListener () {}
+        addListener (listener: PortListener): void {}
       }
     }
   }
 
   const script = document.createElement('script')
   script.src = '/scripts/background.js'
-  document.body.appendChild(script)
+  if (document.body) {
+    document.body.appendChild(script)
+  }
 }
 
 export default bootstrapMetaMaskBackground

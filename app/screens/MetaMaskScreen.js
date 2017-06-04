@@ -10,23 +10,20 @@ import { Navigation } from 'react-native-navigation'
 import WKWebView from 'react-native-wkwebview-reborn'
 import injection from '../injections/metaMaskPopup'
 import { sharedIPC as ipc } from '../ipc'
-
-const injectedJavaScript = `
-  (${injection.toString()})(window, document)
-`
+import type { WebViewMessage } from '../types'
 
 class MetaMaskScreen extends Component {
-  componentWillUnmount () {
+  componentWillUnmount (): void {
     ipc.disconnect('popup')
   }
 
-  handleDismiss () {
+  handleDismiss (): void {
     Navigation.dismissModal({})
   }
 
-  handleMessage (evt) {
-    console.log('popup message received', evt)
-    const body = evt.body
+  handleMessage (msg: WebViewMessage): void {
+    console.log('popup message received', msg)
+    const body = msg.body
     switch (body.action) {
       case 'connect':
         ipc.connect(body.name, this.refs.metamaskPopup)
@@ -41,7 +38,7 @@ class MetaMaskScreen extends Component {
     }
   }
 
-  render () {
+  render (): React$Element<*> {
     return (
       <View style={styles.container}>
         <WKWebView
@@ -49,7 +46,7 @@ class MetaMaskScreen extends Component {
           style={styles.metamaskPopup}
           source={{uri: 'app://metamask/popup.html'}}
           injectedJavaScript={injectedJavaScript}
-          onMessage={(evt) => this.handleMessage(evt)}
+          onMessage={(msg) => this.handleMessage(msg)}
         />
         <Button
           title='Dismiss'
@@ -72,6 +69,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#f7f7f7'
   }
 })
+
+const injectedJavaScript = `
+  (${injection.toString()})(window, document)
+`
 
 AppRegistry.registerComponent('MetaMaskScreen', () => MetaMaskScreen)
 export default MetaMaskScreen

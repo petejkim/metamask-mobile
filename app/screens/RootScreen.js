@@ -10,29 +10,26 @@ import { Navigation } from 'react-native-navigation'
 import WKWebView from 'react-native-wkwebview-reborn'
 import injection from '../injections/metaMaskBackground'
 import { sharedIPC as ipc } from '../ipc'
-
-const injectedJavaScript = `
-  (${injection.toString()})(window, document)
-`
+import type { WebViewMessage } from '../types'
 
 class RootScreen extends Component {
-  componentDidMount () {
+  componentDidMount (): void {
     ipc.setBackground(this.refs.metamaskBackground)
   }
 
-  openMetaMask () {
+  openMetaMask (): void {
     Navigation.showModal({
       screen: 'nabi.MetaMaskScreen'
     })
   }
 
-  handleMessage (evt) {
-    console.log('background message received', evt)
-    const body = evt.body
+  handleMessage (msg: WebViewMessage): void {
+    console.log('background message received', msg)
+    const body = msg.body
     ipc.sendToClient(body.to, body.data)
   }
 
-  render () {
+  render (): React$Element<*> {
     return (
       <View style={styles.container}>
         <WKWebView
@@ -40,7 +37,7 @@ class RootScreen extends Component {
           style={styles.metamaskBackground}
           source={{uri: 'app://metamask/background.html'}}
           injectedJavaScript={injectedJavaScript}
-          onMessage={(evt) => this.handleMessage(evt)}
+          onMessage={(msg) => this.handleMessage(msg)}
         />
         <Button
           title='Open MetaMask'
@@ -62,6 +59,10 @@ const styles = StyleSheet.create({
     flex: 1
   }
 })
+
+const injectedJavaScript = `
+  (${injection.toString()})(window, document)
+`
 
 AppRegistry.registerComponent('RootScreen', () => RootScreen)
 export default RootScreen
