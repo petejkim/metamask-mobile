@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -35,8 +34,16 @@
 		2D02E4C81E0B4AEC006451C7 /* libRCTWebSocket-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3E991DF850E9000B6D8A /* libRCTWebSocket-tvOS.a */; };
 		2D02E4C91E0B4AEC006451C7 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
 		2DCD954D1E0B4F2C00145EB5 /* NabiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* NabiTests.m */; };
+		4017023112C54FFAA1DDEEFD /* libReactNativeNavigation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AF6E02C79F641F281BB0981 /* libReactNativeNavigation.a */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
+		E901949A1EE35E73006B9F8B /* web in Resources */ = {isa = PBXBuildFile; fileRef = E90194991EE35E73006B9F8B /* web */; };
+		E901949B1EE35E73006B9F8B /* web in Resources */ = {isa = PBXBuildFile; fileRef = E90194991EE35E73006B9F8B /* web */; };
+		E9A98BC11EE1C7F6000FC68B /* NSURLProtocol+WKWebViewSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A98BC01EE1C7F6000FC68B /* NSURLProtocol+WKWebViewSupport.m */; };
+		E9A98BC21EE1C7F6000FC68B /* NSURLProtocol+WKWebViewSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A98BC01EE1C7F6000FC68B /* NSURLProtocol+WKWebViewSupport.m */; };
+		E9A98BE11EE1C80D000FC68B /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9A98BE01EE1C80D000FC68B /* WebKit.framework */; };
+		E9A98BE41EE1C825000FC68B /* AppProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A98BE31EE1C825000FC68B /* AppProtocol.m */; };
+		E9A98BE51EE1C825000FC68B /* AppProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A98BE31EE1C825000FC68B /* AppProtocol.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -236,6 +243,13 @@
 			remoteGlobalIDString = 0974579A1D2A440A000D9368;
 			remoteInfo = RCTWKWebView;
 		};
+		E98F3EB21EDD01700012F403 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8A46EF9686574C3DBBACB316 /* ReactNativeNavigation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D8AFADBD1BEE6F3F00A4592D;
+			remoteInfo = ReactNativeNavigation;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -263,8 +277,16 @@
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
+		8A46EF9686574C3DBBACB316 /* ReactNativeNavigation.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeNavigation.xcodeproj; path = "../node_modules/react-native-navigation/ios/ReactNativeNavigation.xcodeproj"; sourceTree = "<group>"; };
+		9AF6E02C79F641F281BB0981 /* libReactNativeNavigation.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libReactNativeNavigation.a; sourceTree = "<group>"; };
 		D37540B845F049E8ACD3C574 /* libRCTWKWebView.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTWKWebView.a; sourceTree = "<group>"; };
 		E2F83DB71F72454687FDD8F5 /* RCTWKWebView.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTWKWebView.xcodeproj; path = "../node_modules/react-native-wkwebview-reborn/ios/RCTWKWebView.xcodeproj"; sourceTree = "<group>"; };
+		E90194991EE35E73006B9F8B /* web */ = {isa = PBXFileReference; lastKnownFileType = folder; name = web; path = ../web; sourceTree = "<group>"; };
+		E9A98BBF1EE1C7F6000FC68B /* NSURLProtocol+WKWebViewSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLProtocol+WKWebViewSupport.h"; sourceTree = "<group>"; };
+		E9A98BC01EE1C7F6000FC68B /* NSURLProtocol+WKWebViewSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLProtocol+WKWebViewSupport.m"; sourceTree = "<group>"; };
+		E9A98BE01EE1C80D000FC68B /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		E9A98BE21EE1C825000FC68B /* AppProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppProtocol.h; path = Nabi/AppProtocol.h; sourceTree = "<group>"; };
+		E9A98BE31EE1C825000FC68B /* AppProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppProtocol.m; path = Nabi/AppProtocol.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -280,6 +302,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9A98BE11EE1C80D000FC68B /* WebKit.framework in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
@@ -292,6 +315,7 @@
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				105DA2C259B0456B8C4FDEDB /* libRCTWKWebView.a in Frameworks */,
+				4017023112C54FFAA1DDEEFD /* libReactNativeNavigation.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,10 +427,13 @@
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
+				E9A98BE21EE1C825000FC68B /* AppProtocol.h */,
+				E9A98BE31EE1C825000FC68B /* AppProtocol.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				E9A98BBD1EE1C7F6000FC68B /* vendor */,
 			);
 			name = Nabi;
 			sourceTree = "<group>";
@@ -459,6 +486,7 @@
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				E2F83DB71F72454687FDD8F5 /* RCTWKWebView.xcodeproj */,
+				8A46EF9686574C3DBBACB316 /* ReactNativeNavigation.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -478,7 +506,9 @@
 				13B07FAE1A68108700A75B9A /* Nabi */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* NabiTests */,
+				E90194991EE35E73006B9F8B /* web */,
 				83CBBA001A601CBA00E9B192 /* Products */,
+				E9A98BDF1EE1C80D000FC68B /* Frameworks */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -501,6 +531,39 @@
 				E98F3E4B1EDC10830012F403 /* libRCTWKWebView.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		E98F3E951EDD01700012F403 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E98F3EB31EDD01700012F403 /* libReactNativeNavigation.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E9A98BBD1EE1C7F6000FC68B /* vendor */ = {
+			isa = PBXGroup;
+			children = (
+				E9A98BBE1EE1C7F6000FC68B /* WKWebViewWithURLProtocol */,
+			);
+			path = vendor;
+			sourceTree = "<group>";
+		};
+		E9A98BBE1EE1C7F6000FC68B /* WKWebViewWithURLProtocol */ = {
+			isa = PBXGroup;
+			children = (
+				E9A98BBF1EE1C7F6000FC68B /* NSURLProtocol+WKWebViewSupport.h */,
+				E9A98BC01EE1C7F6000FC68B /* NSURLProtocol+WKWebViewSupport.m */,
+			);
+			path = WKWebViewWithURLProtocol;
+			sourceTree = "<group>";
+		};
+		E9A98BDF1EE1C80D000FC68B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E9A98BE01EE1C80D000FC68B /* WebKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -584,12 +647,16 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 830;
 				ORGANIZATIONNAME = "";
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = 3K6TZ9NCHM;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
+					};
+					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = 3K6TZ9NCHM;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -661,6 +728,10 @@
 				{
 					ProductGroup = 146834001AC3E56700842450 /* Products */;
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+				},
+				{
+					ProductGroup = E98F3E951EDD01700012F403 /* Products */;
+					ProjectRef = 8A46EF9686574C3DBBACB316 /* ReactNativeNavigation.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -856,6 +927,13 @@
 			remoteRef = E98F3E4A1EDC10830012F403 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		E98F3EB31EDD01700012F403 /* libReactNativeNavigation.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libReactNativeNavigation.a;
+			remoteRef = E98F3EB21EDD01700012F403 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -870,6 +948,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E901949A1EE35E73006B9F8B /* web in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 			);
@@ -880,6 +959,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */,
+				E901949B1EE35E73006B9F8B /* web in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -937,7 +1017,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				E9A98BC11EE1C7F6000FC68B /* NSURLProtocol+WKWebViewSupport.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				E9A98BE41EE1C825000FC68B /* AppProtocol.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -946,7 +1028,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */,
+				E9A98BC21EE1C7F6000FC68B /* NSURLProtocol+WKWebViewSupport.m in Sources */,
 				2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */,
+				E9A98BE51EE1C825000FC68B /* AppProtocol.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -990,6 +1074,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 3K6TZ9NCHM;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -997,19 +1082,19 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-wkwebview-reborn/ios/RCTWKWebView",
+					"$(SRCROOT)/../node_modules/react-native-navigation/ios/**",
 				);
 				INFOPLIST_FILE = NabiTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "cloud.kim.pete.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Nabi.app/Nabi";
 			};
@@ -1020,22 +1105,23 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = 3K6TZ9NCHM;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-wkwebview-reborn/ios/RCTWKWebView",
+					"$(SRCROOT)/../node_modules/react-native-navigation/ios/**",
 				);
 				INFOPLIST_FILE = NabiTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "cloud.kim.pete.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Nabi.app/Nabi";
 			};
@@ -1047,9 +1133,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
+				DEVELOPMENT_TEAM = 3K6TZ9NCHM;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-wkwebview-reborn/ios/RCTWKWebView",
+					"$(SRCROOT)/../node_modules/react-native-navigation/ios/**",
+					"$(SRCROOT)/../node_modules/react-native/React/**",
 				);
 				INFOPLIST_FILE = Nabi/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1058,7 +1147,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "cloud.kim.pete.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Nabi;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1069,9 +1158,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3K6TZ9NCHM;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-wkwebview-reborn/ios/RCTWKWebView",
+					"$(SRCROOT)/../node_modules/react-native-navigation/ios/**",
+					"$(SRCROOT)/../node_modules/react-native/React/**",
 				);
 				INFOPLIST_FILE = Nabi/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1080,7 +1172,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "cloud.kim.pete.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Nabi;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1096,23 +1188,24 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-wkwebview-reborn/ios/RCTWKWebView",
+					"$(SRCROOT)/../node_modules/react-native-navigation/ios/**",
 				);
 				INFOPLIST_FILE = "Nabi-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.Nabi-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "cloud.kim.pete.Nabi-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -1131,22 +1224,23 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
 				GCC_NO_COMMON_BLOCKS = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-wkwebview-reborn/ios/RCTWKWebView",
+					"$(SRCROOT)/../node_modules/react-native-navigation/ios/**",
 				);
 				INFOPLIST_FILE = "Nabi-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.Nabi-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "cloud.kim.pete.Nabi-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -1163,15 +1257,15 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "Nabi-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.Nabi-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "cloud.kim.pete.Nabi-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Nabi-tvOS.app/Nabi-tvOS";
@@ -1189,14 +1283,14 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "Nabi-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.Nabi-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "cloud.kim.pete.Nabi-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Nabi-tvOS.app/Nabi-tvOS";

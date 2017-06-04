@@ -4,19 +4,24 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "test": "jest",
+    "lint": "standard *.js app/**/*.js | snazzy",
+    "lint-fix": "standard --fix *.js app/**/*.js | snazzy"
   },
   "dependencies": {
     "react": "16.0.0-alpha.6",
     "react-native": "0.44.2",
-    "react-native-wkwebview-reborn": "^1.4.0"
+    "react-native-navigation": "^1.1.81",
+    "react-native-wkwebview-reborn": "CRAlpha/react-native-wkwebview#5e0d767"
   },
   "devDependencies": {
     "babel-jest": "20.0.3",
     "babel-preset-react-native": "1.9.2",
     "flow-bin": "^0.42.0",
     "jest": "20.0.4",
-    "react-test-renderer": "16.0.0-alpha.6"
+    "react-test-renderer": "16.0.0-alpha.6",
+    "snazzy": "^7.0.0",
+    "standard": "^10.0.2"
   },
   "jest": {
     "preset": "react-native"
