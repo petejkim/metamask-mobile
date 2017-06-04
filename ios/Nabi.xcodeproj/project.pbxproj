@@ -9,12 +9,12 @@
 /* Begin PBXBuildFile section */
 		E91D41411EE4233F009BE67F /* web in Resources */ = {isa = PBXBuildFile; fileRef = E91D41401EE4233F009BE67F /* web */; };
 		E91D41891EE4241F009BE67F /* NSURLProtocol+WKWebViewSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = E91D41881EE4241F009BE67F /* NSURLProtocol+WKWebViewSupport.m */; };
+		E91D41C01EE42AD6009BE67F /* AppProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91D41BF1EE42AD6009BE67F /* AppProtocol.swift */; };
 		E99BB9F01EE411AA00915720 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99BB9EF1EE411AA00915720 /* AppDelegate.swift */; };
 		E99BB9F71EE411AA00915720 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E99BB9F61EE411AA00915720 /* Assets.xcassets */; };
 		E99BBA051EE411AA00915720 /* NabiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99BBA041EE411AA00915720 /* NabiTests.swift */; };
 		E99BBA101EE411AA00915720 /* NabiUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99BBA0F1EE411AA00915720 /* NabiUITests.swift */; };
 		E99BBA3F1EE4135900915720 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E99BBA3E1EE4135900915720 /* WebKit.framework */; };
-		E99BBA531EE414B600915720 /* AppProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = E99BBA521EE414B600915720 /* AppProtocol.m */; };
 		E99BBB301EE420A600915720 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E99BBAA31EE41FEA00915720 /* libReact.a */; };
 		E99BBB511EE420B100915720 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E99BBAB71EE4200A00915720 /* libRCTActionSheet.a */; };
 		E99BBB521EE420B600915720 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E99BBABE1EE4201E00915720 /* libRCTAnimation.a */; };
@@ -241,6 +241,7 @@
 		E91D41401EE4233F009BE67F /* web */ = {isa = PBXFileReference; lastKnownFileType = folder; name = web; path = ../web; sourceTree = "<group>"; };
 		E91D41871EE4241F009BE67F /* NSURLProtocol+WKWebViewSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLProtocol+WKWebViewSupport.h"; sourceTree = "<group>"; };
 		E91D41881EE4241F009BE67F /* NSURLProtocol+WKWebViewSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLProtocol+WKWebViewSupport.m"; sourceTree = "<group>"; };
+		E91D41BF1EE42AD6009BE67F /* AppProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppProtocol.swift; sourceTree = "<group>"; };
 		E99BB9EC1EE411AA00915720 /* Nabi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nabi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E99BB9EF1EE411AA00915720 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E99BB9F61EE411AA00915720 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -253,8 +254,6 @@
 		E99BBA111EE411AA00915720 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E99BBA391EE4133900915720 /* Nabi-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Nabi-Bridging-Header.h"; sourceTree = "<group>"; };
 		E99BBA3E1EE4135900915720 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
-		E99BBA511EE414B600915720 /* AppProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppProtocol.h; sourceTree = "<group>"; };
-		E99BBA521EE414B600915720 /* AppProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppProtocol.m; sourceTree = "<group>"; };
 		E99BBA971EE41FEA00915720 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		E99BBAB21EE4200A00915720 /* RCTActionSheet.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTActionSheet.xcodeproj; path = "../node_modules/react-native/Libraries/ActionSheetIOS/RCTActionSheet.xcodeproj"; sourceTree = "<group>"; };
 		E99BBAB81EE4201E00915720 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
@@ -355,8 +354,7 @@
 			isa = PBXGroup;
 			children = (
 				E99BB9EF1EE411AA00915720 /* AppDelegate.swift */,
-				E99BBA511EE414B600915720 /* AppProtocol.h */,
-				E99BBA521EE414B600915720 /* AppProtocol.m */,
+				E91D41BF1EE42AD6009BE67F /* AppProtocol.swift */,
 				E99BB9F61EE411AA00915720 /* Assets.xcassets */,
 				E99BBB7B1EE4227100915720 /* LaunchScreen.xib */,
 				E99BB9FB1EE411AA00915720 /* Info.plist */,
@@ -931,9 +929,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E99BBA531EE414B600915720 /* AppProtocol.m in Sources */,
 				E91D41891EE4241F009BE67F /* NSURLProtocol+WKWebViewSupport.m in Sources */,
 				E99BB9F01EE411AA00915720 /* AppDelegate.swift in Sources */,
+				E91D41C01EE42AD6009BE67F /* AppProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -3,7 +3,5 @@
 //
 
 #import "NSURLProtocol+WKWebViewSupport.h"
-#import "AppProtocol.h"
-
 #import <React/RCTBundleURLProvider.h>
 #import "RCCManager.h"
