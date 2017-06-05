@@ -1,8 +1,7 @@
 // @flow
-import React, { Component } from 'react'
+import React, { Component, Element } from 'react'
 import {
   AppRegistry,
-  Button,
   StyleSheet,
   View
 } from 'react-native'
@@ -10,18 +9,38 @@ import { Navigation } from 'react-native-navigation'
 import WKWebView from 'react-native-wkwebview-reborn'
 import injection from '../injections/metaMaskPopup'
 import { sharedIPC as ipc } from '../ipc'
-import type { WebViewMessage } from '../types'
+import type { NavigatorEvent, WebViewMessage } from '../types'
 
 class MetaMaskScreen extends Component {
+  static navigatorButtons = {
+    rightButtons: [
+      {
+        title: 'Close',
+        id: 'close'
+      }
+    ]
+  }
+
+  props: {
+    navigator: *
+  }
+
+  componentDidMount (): void {
+    const { navigator } = this.props
+    navigator.setOnNavigatorEvent(this.handleNavigatorEvent)
+  }
+
   componentWillUnmount (): void {
     ipc.disconnect('popup')
   }
 
-  handleDismiss (): void {
-    Navigation.dismissModal({})
+  handleNavigatorEvent = (event: NavigatorEvent): void => {
+    if (event.type === 'NavBarButtonPress' && event.id === 'close') {
+      Navigation.dismissModal({})
+    }
   }
 
-  handleMessage (msg: WebViewMessage): void {
+  handleMessage = (msg: WebViewMessage): void => {
     console.log('popup message received', msg)
     const body = msg.body
     switch (body.action) {
@@ -38,7 +57,7 @@ class MetaMaskScreen extends Component {
     }
   }
 
-  render (): React$Element<*> {
+  render (): Element<*> {
     return (
       <View style={styles.container}>
         <WKWebView
@@ -46,11 +65,7 @@ class MetaMaskScreen extends Component {
           style={styles.metamaskPopup}
           source={{uri: 'app://metamask/popup.html'}}
           injectedJavaScript={injectedJavaScript}
-          onMessage={(msg) => this.handleMessage(msg)}
-        />
-        <Button
-          title='Dismiss'
-          onPress={() => this.handleDismiss()}
+          onMessage={this.handleMessage}
         />
       </View>
     )

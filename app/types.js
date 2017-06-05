@@ -20,3 +20,8 @@ export interface Window {
     }
   }
 }
+
+export interface NavigatorEvent {
+  type: string,
+  id: string
+}

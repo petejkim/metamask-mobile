@@ -6,7 +6,10 @@ export const startApp = function (): void {
   registerScreens()
   Navigation.startSingleScreenApp({
     screen: {
-      screen: 'nabi.RootScreen'
+      screen: 'nabi.RootScreen',
+      navigatorStyle: {
+        navBarHidden: true
+      }
     }
   })
 }
