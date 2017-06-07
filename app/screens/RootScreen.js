@@ -5,7 +5,7 @@ import {
   StyleSheet,
   View
 } from 'react-native'
-import Browser from '../components/Browser'
+import BrowserWindow from '../components/BrowserWindow'
 import MetaMaskBackground from '../components/MetaMaskBackground'
 
 class RootScreen extends Component {
@@ -13,7 +13,7 @@ class RootScreen extends Component {
     return (
       <View style={styles.container}>
         <MetaMaskBackground />
-        <Browser />
+        <BrowserWindow />
       </View>
     )
   }

@@ -45,7 +45,7 @@ class MetaMaskScreen extends Component {
     const body = msg.body
     switch (body.action) {
       case 'connect':
-        ipc.connect(body.name, this.refs.metamaskPopup)
+        ipc.connect(body.name, this.refs.webview)
         return
 
       case 'disconnect':
@@ -61,8 +61,8 @@ class MetaMaskScreen extends Component {
     return (
       <View style={styles.container}>
         <WKWebView
-          ref='metamaskPopup'
-          style={styles.metamaskPopup}
+          ref='webview'
+          style={styles.webview}
           source={{uri: 'app://metamask/popup.html'}}
           injectedJavaScript={injectedJavaScript}
           onMessage={this.handleMessage}
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'stretch'
   },
-  metamaskPopup: {
+  webview: {
     flex: 1,
     backgroundColor: '#f7f7f7'
   }
