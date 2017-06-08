@@ -6,6 +6,7 @@ import {
   TextInput,
   View
 } from 'react-native'
+import { normalizeUrl } from '../util'
 import {
   TOOLBAR_HEIGHT,
   TOOLBAR_PADDING,
@@ -17,21 +18,14 @@ interface Props {
   onNavigate?: (string) => void
 }
 
-interface Selection {
-  start: number,
-  end: number
-}
-
 class LocationBar extends Component {
   props: Props
   state: {
     focused: boolean,
-    urlString: string,
-    selection: Selection
+    urlString: string
   } = {
     focused: false,
-    urlString: this.props.currentLocation,
-    selection: { start: 0, end: 0 }
+    urlString: this.props.currentLocation
   }
 
   componentWillReceiveProps (newProps: Props): void {
@@ -48,11 +42,6 @@ class LocationBar extends Component {
     this.setState({
       focused: true
     })
-    setTimeout(() => {
-      this.setState({
-        selection: { start: 0, end: this.state.urlString.length }
-      })
-    }, 10)
   }
 
   handleBlur = (): void => {
@@ -65,21 +54,17 @@ class LocationBar extends Component {
     this.setState({ urlString: text })
   }
 
-  handleSelectionChange = ({ nativeEvent: { selection } }: { nativeEvent: { selection: Selection } }): void => {
-    this.setState({ selection })
-  }
-
   handleSubmitEditing = (): void => {
     const { onNavigate } = this.props
     const { urlString } = this.state
 
     if (typeof onNavigate === 'function') {
-      onNavigate(urlString)
+      onNavigate(normalizeUrl(urlString))
     }
   }
 
   render (): Element<*> {
-    const { focused, urlString, selection } = this.state
+    const { focused, urlString } = this.state
     return (
       <View style={focused ? [styles.container, styles.containerFocused] : styles.container}>
         <TextInput
@@ -87,14 +72,13 @@ class LocationBar extends Component {
           onFocus={this.handleFocus}
           onBlur={this.handleBlur}
           onChangeText={this.handleChangeText}
-          onSelectionChange={this.handleSelectionChange}
           onSubmitEditing={this.handleSubmitEditing}
           autoCapitalize='none'
           autoCorrect={false}
           clearButtonMode='while-editing'
           keyboardType='url'
           returnKeyType='go'
-          selection={selection}
+          selectTextOnFocus
           value={urlString}
         />
       </View>
