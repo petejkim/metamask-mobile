@@ -46,11 +46,12 @@ class BrowserWindow extends Component {
   }
 
   handleProgress = (progress: number): void => {
+    if (this.state.location.startsWith('about:')) return
     this.setState({ progress })
   }
 
   handleLoadStart = ({ nativeEvent: { url } }: { nativeEvent: { url: string } }): void => {
-    if (url === 'about:blank') {
+    if (url.startsWith('about:')) {
       this.setState({ currentLocation: url })
       return
     }
