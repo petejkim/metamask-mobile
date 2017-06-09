@@ -26,7 +26,8 @@ class MetaMaskBackground extends Component {
         <WKWebView
           ref='webview'
           source={{uri: 'app://metamask/background.html'}}
-          injectedJavaScript={injectedJavaScript}
+          runJavaScriptAtDocumentEnd={injectedJavaScript}
+          runJavaScriptInMainFrameOnly
           onMessage={this.handleMessage}
         />
       </View>

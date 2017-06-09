@@ -3587,9 +3587,9 @@ react-native-navigation@^1.1.81:
   dependencies:
     lodash "4.x.x"
 
-react-native-wkwebview-reborn@CRAlpha/react-native-wkwebview#5e0d767:
-  version "1.2.0"
-  resolved "https://codeload.github.com/CRAlpha/react-native-wkwebview/tar.gz/5e0d767"
+react-native-wkwebview-reborn@petejkim/react-native-wkwebview#a38c83174bdf6a0b0edc6f3aa7acb8885e7c2d96:
+  version "1.5.0"
+  resolved "https://codeload.github.com/petejkim/react-native-wkwebview/tar.gz/a38c83174bdf6a0b0edc6f3aa7acb8885e7c2d96"
   dependencies:
     fbjs "^0.8.3"
 

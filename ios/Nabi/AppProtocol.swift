@@ -2,7 +2,7 @@ import UIKit
 
 class AppProtocol: URLProtocol {
   override class func canInit(with request: URLRequest) -> Bool {
-    return request.url!.scheme == "app"
+    return request.url!.scheme == "app" || (request.url!.scheme == "about" && request.url!.host == "metamask")
   }
 
   override class func canonicalRequest(for request: URLRequest) -> URLRequest {

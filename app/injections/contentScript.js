@@ -3,7 +3,7 @@ import type { Window } from '../types'
 
 type PortListener = any => void
 
-const bootstrapMetaMaskPopup = function (window: Window, document: Document) {
+const injectContentScript = function (window: Window, document: Document) {
   const makePort = function (name) {
     console.log('portName:', name)
     return {
@@ -34,6 +34,12 @@ const bootstrapMetaMaskPopup = function (window: Window, document: Document) {
   }
 
   window.browser = {
+    extension: {
+      getURL (path: string) {
+        return `about://metamask/${path}`
+      }
+    },
+
     runtime: {
       connect ({ name }: { name: string }) {
         window.setTimeout(function () {
@@ -42,7 +48,7 @@ const bootstrapMetaMaskPopup = function (window: Window, document: Document) {
             url: location.href,
             name
           })
-          window.addEventListener('unload', function (evt) {
+          window.addEventListener('pagehide', function () {
             window.webkit.messageHandlers.reactNative.postMessage({
               action: 'disconnect',
               name
@@ -55,13 +61,14 @@ const bootstrapMetaMaskPopup = function (window: Window, document: Document) {
   }
 
   const script = document.createElement('script')
-  script.src = '/scripts/popup.js'
+  script.src = 'about://metamask/scripts/contentscript.js'
   script.onload = function () {
     this.parentNode.removeChild(this)
   }
-  if (document.body) {
-    document.body.appendChild(script)
+  const el = document.head || document.body || document.documentElement
+  if (el) {
+    el.appendChild(script)
   }
 }
 
-export default bootstrapMetaMaskPopup
+export default injectContentScript

@@ -4,11 +4,12 @@ import type { Window } from '../types'
 type PortListener = any => void
 
 const bootstrapMetaMaskBackground = function (window: Window, document: Document) {
-  const makePort = function (name: string) {
+  const makePort = function (name: string, url: string) {
     let disconnectListeners: PortListener[] = []
     let messageListeners: PortListener[] = []
 
     const messageHandler = function (evt: CustomEvent): void {
+      console.log('message received', evt)
       if (evt.detail.from === name) {
         messageListeners.forEach(function (listener) {
           listener(evt.detail.data)
@@ -33,6 +34,7 @@ const bootstrapMetaMaskBackground = function (window: Window, document: Document
 
     return {
       name,
+      sender: { url },
 
       onDisconnect: {
         addListener (listener: PortListener): void {
@@ -47,6 +49,7 @@ const bootstrapMetaMaskBackground = function (window: Window, document: Document
       },
 
       postMessage (message: any): void {
+        console.log(`sending message back to ${name}: `, message)
         window.webkit.messageHandlers.reactNative.postMessage({
           to: name,
           data: message
@@ -70,7 +73,8 @@ const bootstrapMetaMaskBackground = function (window: Window, document: Document
       onConnect: {
         addListener (listener: PortListener): void {
           window.addEventListener('port:connect', function (evt) {
-            listener(makePort(evt.detail.name))
+            console.log('connecting to port: ', evt.detail.name, evt.detail.url)
+            listener(makePort(evt.detail.name, evt.detail.url))
           }, false)
         }
       },
@@ -83,6 +87,9 @@ const bootstrapMetaMaskBackground = function (window: Window, document: Document
 
   const script = document.createElement('script')
   script.src = '/scripts/background.js'
+  script.onload = function () {
+    this.parentNode.removeChild(this)
+  }
   if (document.body) {
     document.body.appendChild(script)
   }

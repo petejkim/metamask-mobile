@@ -35,7 +35,7 @@ export const normalizeUrl = function (urlString: string): string {
     }
   }
 
-  if (!u.slashes) {
+  if (!u.slashes && u.protocol !== 'about:') {
     u.slashes = true
   }
 

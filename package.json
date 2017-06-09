@@ -12,7 +12,7 @@
     "react": "16.0.0-alpha.6",
     "react-native": "0.44.2",
     "react-native-navigation": "^1.1.81",
-    "react-native-wkwebview-reborn": "CRAlpha/react-native-wkwebview#5e0d767",
+    "react-native-wkwebview-reborn": "petejkim/react-native-wkwebview#a38c83174bdf6a0b0edc6f3aa7acb8885e7c2d96",
     "url": "^0.11.0"
   },
   "devDependencies": {

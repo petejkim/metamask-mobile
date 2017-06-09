@@ -45,7 +45,7 @@ class MetaMaskScreen extends Component {
     const body = msg.body
     switch (body.action) {
       case 'connect':
-        ipc.connect(body.name, this.refs.webview)
+        ipc.connect(body.name, body.url, this.refs.webview)
         return
 
       case 'disconnect':
@@ -64,7 +64,8 @@ class MetaMaskScreen extends Component {
           ref='webview'
           style={styles.webview}
           source={{uri: 'app://metamask/popup.html'}}
-          injectedJavaScript={injectedJavaScript}
+          runJavaScriptAtDocumentEnd={injectedJavaScript}
+          runJavaScriptInMainFrameOnly
           onMessage={this.handleMessage}
         />
       </View>

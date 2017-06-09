@@ -14,8 +14,8 @@
 .*/Libraries/react-native/React.js
 .*/Libraries/react-native/ReactNative.js
 
-.*/web/metamask/.*
-.*/web/vendor/.*
+.*/ios/build/.*
+.*/android/build/.*
 
 [include]
 

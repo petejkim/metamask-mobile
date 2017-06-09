@@ -12,12 +12,15 @@ import { Navigation } from 'react-native-navigation'
 import WKWebView from 'react-native-wkwebview-reborn'
 import LocationBar from './LocationBar'
 import PageLoadProgress from './PageLoadProgress'
+import injection from '../injections/contentScript'
+import { sharedIPC as ipc } from '../ipc'
 import {
   TOOLBAR_HEIGHT,
   TOOLBAR_ICON_SIZE,
   TOOLBAR_PADDING,
   STATUS_BAR_HEIGHT
 } from '../constants'
+import type { WebViewMessage } from '../types'
 
 class BrowserWindow extends Component {
   state: {
@@ -58,6 +61,18 @@ class BrowserWindow extends Component {
     this.setState({ loaded: true })
   }
 
+  handleMessage = (msg: WebViewMessage): void => {
+    console.log('browser window message received', msg)
+    const body = msg.body
+    if (body.name === 'contentscript' && body.action === 'connect') {
+      ipc.connect(body.name, body.url, this.refs.webview)
+    } else if (body.name === 'contentscript' && body.action === 'disconnect') {
+      ipc.disconnect(body.name)
+    } else if (body.from === 'contentscript' && body.action === 'message') {
+      ipc.sendToBackground(body.from, body.data)
+    }
+  }
+
   render (): Element<*> {
     const {
       location,
@@ -90,6 +105,9 @@ class BrowserWindow extends Component {
           onProgress={this.handleProgress}
           onLoadStart={this.handleLoadStart}
           onLoadEnd={this.handleLoadEnd}
+          onMessage={this.handleMessage}
+          runJavaScriptAtDocumentStart={injectedJavaScript}
+          runJavaScriptInMainFrameOnly={false}
         />
       </View>
     )
@@ -122,6 +140,10 @@ const styles = StyleSheet.create({
     flex: 1
   }
 })
+
+const injectedJavaScript = `
+  (${injection.toString()})(window, document)
+`
 
 AppRegistry.registerComponent('BrowserWindow', () => BrowserWindow)
 export default BrowserWindow

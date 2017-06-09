@@ -14,11 +14,12 @@ class IPC {
     this.background = background
   }
 
-  connect (name: string, client: WKWebView): void {
+  connect (name: string, url: string, client: WKWebView): void {
     console.log('connected:', name)
     this.clients[name] = client
     const detail = JSON.stringify({
-      name
+      name,
+      url
     })
     if (!this.background) throw new Error('ipc: background needs to be set')
     this.background.evaluateJavaScript(`
