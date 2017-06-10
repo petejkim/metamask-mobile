@@ -12,7 +12,7 @@ import {
 
 interface Props {
   progress: number,
-  completed: boolean
+  hidden: boolean
 }
 
 class PageLoadProgress extends Component {
@@ -26,10 +26,10 @@ class PageLoadProgress extends Component {
   }
 
   componentWillReceiveProps (newProps: Props): void {
-    const { progress, completed } = this.props
-    const { progress: newProgress, completed: newCompleted } = newProps
+    const { progress, hidden } = this.props
+    const { progress: newProgress, hidden: newHidden } = newProps
 
-    if (!completed && progress !== 1 && (newCompleted || newProgress === 1)) {
+    if ((!hidden || progress !== 1) && (newHidden || newProgress === 1)) {
       Animated.timing(this.state.progressAnimated, {
         toValue: 1,
         duration: 500

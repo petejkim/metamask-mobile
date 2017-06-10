@@ -22,17 +22,27 @@ import {
 } from '../constants'
 import type { WebViewMessage } from '../types'
 
+interface WebViewBaseEvent {
+  url: string,
+  loading: boolean,
+  title: string,
+  canGoBack: boolean,
+  canGoForward: boolean
+}
+
 class BrowserWindow extends Component {
   state: {
-    location: string,
-    currentLocation: string,
+    sourceUrl: string,
+    showProgress: boolean,
     progress: number,
-    loaded: boolean
+    canGoBack: boolean,
+    canGoForward: boolean
   } = {
-    location: 'about:blank',
-    currentLocation: 'about:blank',
+    sourceUrl: 'about:blank',
+    showProgress: false,
     progress: 1,
-    loaded: true
+    canGoBack: false,
+    canGoForward: false
   }
 
   handlePressMetaMaskButton = (): void => {
@@ -41,25 +51,55 @@ class BrowserWindow extends Component {
     })
   }
 
+  handlePressBackButton = (): void => {
+    this.refs.webview.goBack()
+  }
+
   handleNavigate = (urlString: string): void => {
-    this.setState({ location: urlString })
+    const { sourceUrl } = this.state
+    if (sourceUrl === urlString) {
+      this.refs.webview.reload()
+      return
+    }
+    this.setState({ sourceUrl: urlString })
   }
 
   handleProgress = (progress: number): void => {
-    if (this.state.location.startsWith('about:')) return
     this.setState({ progress })
   }
 
-  handleLoadStart = ({ nativeEvent: { url } }: { nativeEvent: { url: string } }): void => {
-    if (url.startsWith('about:')) {
-      this.setState({ currentLocation: url })
-      return
+  handleLoadStart = ({ nativeEvent: event }: { nativeEvent: WebViewBaseEvent }): void => {
+    const url = event.url
+
+    const changes: {
+      sourceUrl: string,
+      canGoBack: boolean,
+      canGoForward: boolean,
+      showProgress?: boolean,
+      progress?: number
+    } = {
+      sourceUrl: url,
+      canGoBack: event.canGoBack,
+      canGoForward: event.canGoForward
     }
-    this.setState({ currentLocation: url, progress: 0, loaded: false })
+
+    if (!url.startsWith('about:')) {
+      Object.assign(changes, {
+        showProgress: true,
+        progress: 0
+      })
+    }
+
+    this.setState(changes)
   }
 
-  handleLoadEnd = (): void => {
-    this.setState({ loaded: true })
+  handleLoadEnd = ({ nativeEvent: event }: { nativeEvent: WebViewBaseEvent }): void => {
+    this.setState({
+      canGoBack: event.canGoBack,
+      canGoForward: event.canGoForward,
+      showProgress: false,
+      progress: 1
+    })
   }
 
   handleMessage = (msg: WebViewMessage): void => {
@@ -76,10 +116,10 @@ class BrowserWindow extends Component {
 
   render (): Element<*> {
     const {
-      location,
-      currentLocation,
+      sourceUrl,
+      showProgress,
       progress,
-      loaded
+      canGoBack
     } = this.state
 
     return (
@@ -89,7 +129,20 @@ class BrowserWindow extends Component {
           barStyle='default'
         />
         <View style={styles.toolbar}>
-          <LocationBar currentLocation={currentLocation} onNavigate={this.handleNavigate} />
+          {canGoBack ? (
+            <TouchableOpacity onPress={this.handlePressBackButton}>
+              <Image
+                style={styles.backButton}
+                source={require('../assets/toolbar-back.png')}
+              />
+            </TouchableOpacity>
+          ) : (
+            <Image
+              style={[styles.backButton, styles.disabledButton]}
+              source={require('../assets/toolbar-back.png')}
+            />
+          )}
+          <LocationBar currentUrl={sourceUrl} onNavigate={this.handleNavigate} />
           <TouchableOpacity onPress={this.handlePressMetaMaskButton}>
             <Image
               style={styles.metaMaskButton}
@@ -97,12 +150,12 @@ class BrowserWindow extends Component {
             />
           </TouchableOpacity>
         </View>
-        <PageLoadProgress progress={progress} completed={loaded} />
+        <PageLoadProgress progress={progress} hidden={!showProgress} />
         <View style={styles.progressBar} />
         <WKWebView
           ref='webview'
           style={styles.webview}
-          source={{ uri: location }}
+          source={{ uri: sourceUrl }}
           onProgress={this.handleProgress}
           onLoadStart={this.handleLoadStart}
           onLoadEnd={this.handleLoadEnd}
@@ -121,9 +174,17 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'stretch'
   },
+  backButton: {
+    width: 24,
+    height: 24,
+    marginRight: TOOLBAR_PADDING
+  },
   metaMaskButton: {
     width: TOOLBAR_ICON_SIZE,
     height: TOOLBAR_ICON_SIZE
+  },
+  disabledButton: {
+    opacity: 0.25
   },
   toolbar: {
     paddingTop: STATUS_BAR_HEIGHT,

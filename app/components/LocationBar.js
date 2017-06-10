@@ -14,7 +14,7 @@ import {
 } from '../constants'
 
 interface Props {
-  currentLocation: string,
+  currentUrl: string,
   onNavigate?: (string) => void
 }
 
@@ -25,15 +25,15 @@ class LocationBar extends Component {
     urlString: string
   } = {
     focused: false,
-    urlString: this.props.currentLocation
+    urlString: this.props.currentUrl
   }
 
   componentWillReceiveProps (newProps: Props): void {
-    const { currentLocation } = this.props
-    const { currentLocation: newCurrentLocation } = newProps
+    const { currentUrl } = this.props
+    const { currentUrl: newCurrentLocation } = newProps
     const { focused } = this.state
 
-    if (currentLocation !== newCurrentLocation && !focused) {
+    if (currentUrl !== newCurrentLocation && !focused) {
       this.setState({ urlString: newCurrentLocation })
     }
   }
