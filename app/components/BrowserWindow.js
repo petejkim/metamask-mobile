@@ -55,6 +55,10 @@ class BrowserWindow extends Component {
     this.refs.webview.goBack()
   }
 
+  handlePressForwardButton = (): void => {
+    this.refs.webview.goForward()
+  }
+
   handleNavigate = (urlString: string): void => {
     const { sourceUrl } = this.state
     if (sourceUrl === urlString) {
@@ -119,7 +123,8 @@ class BrowserWindow extends Component {
       sourceUrl,
       showProgress,
       progress,
-      canGoBack
+      canGoBack,
+      canGoForward
     } = this.state
 
     return (
@@ -132,14 +137,27 @@ class BrowserWindow extends Component {
           {canGoBack ? (
             <TouchableOpacity onPress={this.handlePressBackButton}>
               <Image
-                style={styles.backButton}
+                style={styles.navigateButton}
                 source={require('../assets/toolbar-back.png')}
               />
             </TouchableOpacity>
           ) : (
             <Image
-              style={[styles.backButton, styles.disabledButton]}
+              style={[styles.navigateButton, styles.disabledButton]}
               source={require('../assets/toolbar-back.png')}
+            />
+          )}
+          {canGoForward ? (
+            <TouchableOpacity onPress={this.handlePressForwardButton}>
+              <Image
+                style={styles.navigateButton}
+                source={require('../assets/toolbar-forward.png')}
+              />
+            </TouchableOpacity>
+          ) : (
+            <Image
+              style={[styles.navigateButton, styles.disabledButton]}
+              source={require('../assets/toolbar-forward.png')}
             />
           )}
           <LocationBar currentUrl={sourceUrl} onNavigate={this.handleNavigate} />
@@ -174,7 +192,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'stretch'
   },
-  backButton: {
+  navigateButton: {
     width: 24,
     height: 24,
     marginRight: TOOLBAR_PADDING
