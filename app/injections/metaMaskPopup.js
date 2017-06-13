@@ -3,7 +3,7 @@ import type { Window } from '../types'
 
 type PortListener = any => void
 
-const bootstrapMetaMaskPopup = function (window: Window, document: Document) {
+const bootstrapMetaMaskPopup = function (window: Window, document: Document, manifest: {}) {
   const uint8ArrayToHex = function (arr) {
     const hex = '0123456789abcdef'
     return Array.from(arr).map((v) => hex[Math.floor(v / 16)] + hex[v % 16]).join('')
@@ -59,6 +59,10 @@ const bootstrapMetaMaskPopup = function (window: Window, document: Document) {
         }, 1)
 
         return makePort(name, id)
+      },
+
+      getManifest () {
+        return manifest
       }
     }
   }

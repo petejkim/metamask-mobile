@@ -8,6 +8,7 @@ import WKWebView from 'react-native-wkwebview-reborn'
 import injection from '../injections/metaMaskBackground'
 import { sharedIPC as ipc } from '../ipc'
 import type { WebViewMessage } from '../types'
+import manifest from '../../web/metamask/manifest.json'
 
 class MetaMaskBackground extends Component {
   componentDidMount (): void {
@@ -36,7 +37,7 @@ class MetaMaskBackground extends Component {
 }
 
 const injectedJavaScript = `
-  (${injection.toString()})(window, document)
+  (${injection.toString()})(window, document, ${JSON.stringify(manifest)})
 `
 
 AppRegistry.registerComponent('MetaMaskBackground', () => MetaMaskBackground)

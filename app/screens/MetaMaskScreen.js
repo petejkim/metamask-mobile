@@ -8,6 +8,7 @@ import {
 import { Navigation } from 'react-native-navigation'
 import WKWebView from 'react-native-wkwebview-reborn'
 import injection from '../injections/metaMaskPopup'
+import manifest from '../../web/metamask/manifest.json'
 import { sharedIPC as ipc } from '../ipc'
 import type { NavigatorEvent, WebViewMessage } from '../types'
 
@@ -93,7 +94,7 @@ const styles = StyleSheet.create({
 })
 
 const injectedJavaScript = `
-  (${injection.toString()})(window, document)
+  (${injection.toString()})(window, document, ${JSON.stringify(manifest)})
 `
 
 AppRegistry.registerComponent('MetaMaskScreen', () => MetaMaskScreen)

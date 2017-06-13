@@ -3,7 +3,7 @@ import type { Window } from '../types'
 
 type PortListener = any => void
 
-const bootstrapMetaMaskBackground = function (window: Window, document: Document) {
+const bootstrapMetaMaskBackground = function (window: Window, document: Document, manifest: {}) {
   const makePort = function (name: string, id: string, url: string) {
     let disconnectListeners: PortListener[] = []
     let messageListeners: PortListener[] = []
@@ -82,6 +82,10 @@ const bootstrapMetaMaskBackground = function (window: Window, document: Document
 
       onInstalled: {
         addListener (listener: PortListener): void {}
+      },
+
+      getManifest () {
+        return manifest
       }
     }
   }
