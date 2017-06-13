@@ -14,11 +14,16 @@ class IPC {
     this.background = background
   }
 
-  connect (name: string, url: string, client: WKWebView): void {
-    console.log('connected:', name)
-    this.clients[name] = client
+  connect (name: string, id: string, url: string, client: WKWebView): void {
+    console.log('connected:', name, id)
+    this.clients[id] = client
+    console.log(name)
+    console.log(id)
+    console.log(url)
+
     const detail = JSON.stringify({
       name,
+      id,
       url
     })
     if (!this.background) throw new Error('ipc: background needs to be set')
@@ -27,23 +32,21 @@ class IPC {
     `)
   }
 
-  disconnect (name: string): void {
-    console.log('disconnected:', name)
-    if (!this.clients[name]) return
-    delete this.clients[name]
-    const detail = JSON.stringify({
-      name
-    })
+  disconnect (id: string): void {
+    console.log('disconnected:', id)
+    if (!this.clients[id]) return
+    delete this.clients[id]
+    const detail = JSON.stringify({ id })
     if (!this.background) throw new Error('ipc: background needs to be set')
     this.background.evaluateJavaScript(`
       window.dispatchEvent(new CustomEvent('port:disconnect', { detail: ${detail} }))
     `)
   }
 
-  sendToBackground (from: string, data: any): void {
-    console.log(`${from} sending message to background:`, data)
+  sendToBackground (id: string, data: any): void {
+    console.log(`${id} sending message to background:`, data)
     const detail = JSON.stringify({
-      from,
+      id,
       data
     })
     if (!this.background) throw new Error('ipc: background needs to be set')
@@ -52,12 +55,12 @@ class IPC {
     `)
   }
 
-  sendToClient (to: string, data: any): void {
-    console.log(`background sending message to ${to}:`, data)
-    const client = this.clients[to]
+  sendToClient (id: string, data: any): void {
+    console.log(`background sending message to ${id}:`, data)
+    const client = this.clients[id]
     if (!client) return
     const detail = JSON.stringify({
-      to,
+      id,
       data
     })
     client.evaluateJavaScript(`

@@ -4,13 +4,13 @@ import type { Window } from '../types'
 type PortListener = any => void
 
 const bootstrapMetaMaskBackground = function (window: Window, document: Document) {
-  const makePort = function (name: string, url: string) {
+  const makePort = function (name: string, id: string, url: string) {
     let disconnectListeners: PortListener[] = []
     let messageListeners: PortListener[] = []
 
     const messageHandler = function (evt: CustomEvent): void {
-      console.log('message received', evt)
-      if (evt.detail.from === name) {
+      if (evt.detail.id === id) {
+        console.log('message received', evt)
         messageListeners.forEach(function (listener) {
           listener(evt.detail.data)
         })
@@ -18,7 +18,8 @@ const bootstrapMetaMaskBackground = function (window: Window, document: Document
     }
 
     const disconnectHandler = function (evt: CustomEvent): void {
-      if (evt.detail.name === name) {
+      if (evt.detail.id === id) {
+        console.log('disconnect', evt.detail)
         disconnectListeners.forEach(function (listener) {
           listener(evt.detail.data)
         })
@@ -49,10 +50,10 @@ const bootstrapMetaMaskBackground = function (window: Window, document: Document
       },
 
       postMessage (message: any): void {
-        console.log(`sending message back to ${name}: `, message)
+        console.log(`sending message back to ${name} ${id}: `, message)
         window.webkit.messageHandlers.reactNative.postMessage({
-          to: name,
-          data: message
+          data: message,
+          id
         })
       }
     }
@@ -73,8 +74,8 @@ const bootstrapMetaMaskBackground = function (window: Window, document: Document
       onConnect: {
         addListener (listener: PortListener): void {
           window.addEventListener('port:connect', function (evt) {
-            console.log('connecting to port: ', evt.detail.name, evt.detail.url)
-            listener(makePort(evt.detail.name, evt.detail.url))
+            console.log('connecting to port: ', evt.detail.name, evt.detail.id, evt.detail.url)
+            listener(makePort(evt.detail.name, evt.detail.id, evt.detail.url))
           }, false)
         }
       },

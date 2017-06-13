@@ -45,6 +45,14 @@ class BrowserWindow extends Component {
     canGoForward: false
   }
 
+  connections: { [string] : boolean } = {}
+
+  componentWillUnmount (): void {
+    Object.keys(this.connections).forEach(function (id) {
+      ipc.disconnect(id)
+    })
+  }
+
   handlePressMetaMaskButton = (): void => {
     Navigation.showModal({
       screen: 'nabi.MetaMaskScreen'
@@ -109,12 +117,19 @@ class BrowserWindow extends Component {
   handleMessage = (msg: WebViewMessage): void => {
     console.log('browser window message received', msg)
     const body = msg.body
-    if (body.name === 'contentscript' && body.action === 'connect') {
-      ipc.connect(body.name, body.url, this.refs.webview)
-    } else if (body.name === 'contentscript' && body.action === 'disconnect') {
-      ipc.disconnect(body.name)
-    } else if (body.from === 'contentscript' && body.action === 'message') {
-      ipc.sendToBackground(body.from, body.data)
+    switch (body.action) {
+      case 'connect':
+        ipc.connect(body.name, body.id, body.url, this.refs.webview)
+        this.connections[body.id] = true
+        return
+
+      case 'disconnect':
+        ipc.disconnect(body.id)
+        delete this.connections[body.id]
+        return
+
+      case 'message':
+        ipc.sendToBackground(body.id, body.data)
     }
   }
 

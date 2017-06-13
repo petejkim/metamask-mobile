@@ -17,7 +17,7 @@ class MetaMaskBackground extends Component {
   handleMessage = (msg: WebViewMessage): void => {
     console.log('background message received', msg)
     const body = msg.body
-    ipc.sendToClient(body.to, body.data)
+    ipc.sendToClient(body.id, body.data)
   }
 
   render (): Element<*> {

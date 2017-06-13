@@ -25,13 +25,17 @@ class MetaMaskScreen extends Component {
     navigator: *
   }
 
+  connections: { [string] : boolean } = {}
+
   componentDidMount (): void {
     const { navigator } = this.props
     navigator.setOnNavigatorEvent(this.handleNavigatorEvent)
   }
 
   componentWillUnmount (): void {
-    ipc.disconnect('popup')
+    Object.keys(this.connections).forEach(function (id) {
+      ipc.disconnect(id)
+    })
   }
 
   handleNavigatorEvent = (event: NavigatorEvent): void => {
@@ -45,15 +49,17 @@ class MetaMaskScreen extends Component {
     const body = msg.body
     switch (body.action) {
       case 'connect':
-        ipc.connect(body.name, body.url, this.refs.webview)
+        ipc.connect(body.name, body.id, body.url, this.refs.webview)
+        this.connections[body.id] = true
         return
 
       case 'disconnect':
-        ipc.disconnect(body.name)
+        ipc.disconnect(body.id)
+        delete this.connections[body.id]
         return
 
       case 'message':
-        ipc.sendToBackground(body.from, body.data)
+        ipc.sendToBackground(body.id, body.data)
     }
   }
 

@@ -4,10 +4,15 @@ import type { Window } from '../types'
 type PortListener = any => void
 
 const bootstrapMetaMaskPopup = function (window: Window, document: Document) {
-  const makePort = function (name) {
-    console.log('portName:', name)
+  const uint8ArrayToHex = function (arr) {
+    const hex = '0123456789abcdef'
+    return Array.from(arr).map((v) => hex[Math.floor(v / 16)] + hex[v % 16]).join('')
+  }
+
+  const makePort = function (name, id) {
     return {
       name,
+      id,
 
       onDisconnect: {
         addListener (listener: PortListener): void {}
@@ -16,7 +21,7 @@ const bootstrapMetaMaskPopup = function (window: Window, document: Document) {
       onMessage: {
         addListener (listener: PortListener): void {
           window.addEventListener('port:message', function (evt) {
-            if (evt.detail.to === name) {
+            if (evt.detail.id === id) {
               listener(evt.detail.data)
             }
           }, false)
@@ -26,8 +31,8 @@ const bootstrapMetaMaskPopup = function (window: Window, document: Document) {
       postMessage (message: any): void {
         window.webkit.messageHandlers.reactNative.postMessage({
           action: 'message',
-          from: name,
-          data: message
+          data: message,
+          id
         })
       }
     }
@@ -36,20 +41,24 @@ const bootstrapMetaMaskPopup = function (window: Window, document: Document) {
   window.browser = {
     runtime: {
       connect ({ name }: { name: string }) {
+        const id = uint8ArrayToHex(window.crypto.getRandomValues(new Uint8Array(8)))
+
         window.setTimeout(function () {
           window.webkit.messageHandlers.reactNative.postMessage({
             action: 'connect',
             url: location.href,
-            name
+            name,
+            id
           })
-          window.addEventListener('unload', function (evt) {
+          window.addEventListener('pagehide', function (evt) {
             window.webkit.messageHandlers.reactNative.postMessage({
               action: 'disconnect',
-              name
+              id
             })
           }, false)
         }, 1)
-        return makePort(name)
+
+        return makePort(name, id)
       }
     }
   }

@@ -12,6 +12,9 @@ export interface Window {
   removeEventListener: (string, CustomEventListener, boolean) => void,
   setTimeout: (() => void, number) => number,
   browser: any,
+  crypto: {
+    getRandomValues: (Uint8Array) => Uint8Array
+  },
   webkit: {
     messageHandlers: {
       reactNative: {
