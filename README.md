@@ -1,5 +1,6 @@
-Nabi
-====
+MetaMask for Mobile
+===================
 
-- - -
-Copyright (c) 2017 Peter Jihoon Kim. All Rights Reserved.
+**This project is very EXPERIMENTAL, use it at your own risk.**
+
+A mobile port of MetaMask. Only built/tested for iOS at the moment.
