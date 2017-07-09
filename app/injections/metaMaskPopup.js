@@ -50,7 +50,7 @@ const bootstrapMetaMaskPopup = function (window: Window, document: Document, man
             name,
             id
           })
-          window.addEventListener('pagehide', function (evt) {
+          window.addEventListener('pagehide', function () {
             window.webkit.messageHandlers.reactNative.postMessage({
               action: 'disconnect',
               id
@@ -61,7 +61,7 @@ const bootstrapMetaMaskPopup = function (window: Window, document: Document, man
         return makePort(name, id)
       },
 
-      getManifest () {
+      getManifest (): {} {
         return manifest
       }
     }

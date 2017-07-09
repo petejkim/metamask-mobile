@@ -6,11 +6,15 @@ import {
 } from 'react-native'
 import WKWebView from 'react-native-wkwebview-reborn'
 import injection from '../injections/metaMaskBackground'
+import manifest from '../../web/metamask/manifest.json'
 import { sharedIPC as ipc } from '../ipc'
 import type { WebViewMessage } from '../types'
-import manifest from '../../web/metamask/manifest.json'
 
 class MetaMaskBackground extends Component {
+  props: {
+    onOpenMetaMask: () => void
+  }
+
   componentDidMount (): void {
     ipc.setBackground(this.refs.webview)
   }
@@ -18,7 +22,17 @@ class MetaMaskBackground extends Component {
   handleMessage = (msg: WebViewMessage): void => {
     console.log('background message received', msg)
     const body = msg.body
-    ipc.sendToClient(body.id, body.data)
+    switch (body.action) {
+      case 'message':
+        ipc.sendToClient(body.id, body.data)
+        return
+
+      case 'metamask':
+        const { onOpenMetaMask } = this.props
+        if (onOpenMetaMask) {
+          onOpenMetaMask()
+        }
+    }
   }
 
   render (): Element<*> {

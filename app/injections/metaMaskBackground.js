@@ -52,6 +52,7 @@ const bootstrapMetaMaskBackground = function (window: Window, document: Document
       postMessage (message: any): void {
         console.log(`sending message back to ${name} ${id}: `, message)
         window.webkit.messageHandlers.reactNative.postMessage({
+          action: 'message',
           data: message,
           id
         })
@@ -84,8 +85,37 @@ const bootstrapMetaMaskBackground = function (window: Window, document: Document
         addListener (listener: PortListener): void {}
       },
 
-      getManifest () {
+      getManifest (): {} {
         return manifest
+      },
+
+      reload () {
+      }
+    },
+
+    tabs: {
+      create ({ url }) {
+      }
+    },
+
+    windows: {
+      create ({ url }, cb) {
+        if (url === 'notification.html') {
+          window.webkit.messageHandlers.reactNative.postMessage({
+            action: 'metamask'
+          })
+          if (typeof cb === 'function') cb()
+        }
+      },
+
+      update () {
+      },
+
+      remove () {
+      },
+
+      getAll (_, cb) {
+        cb([])
       }
     }
   }

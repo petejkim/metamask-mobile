@@ -8,7 +8,6 @@ import {
   TouchableOpacity,
   View
 } from 'react-native'
-import { Navigation } from 'react-native-navigation'
 import WKWebView from 'react-native-wkwebview-reborn'
 import LocationBar from './LocationBar'
 import PageLoadProgress from './PageLoadProgress'
@@ -31,6 +30,10 @@ interface WebViewBaseEvent {
 }
 
 class BrowserWindow extends Component {
+  props: {
+    onPressMetaMaskButton: () => void
+  }
+
   state: {
     sourceUrl: string,
     showProgress: boolean,
@@ -54,9 +57,10 @@ class BrowserWindow extends Component {
   }
 
   handlePressMetaMaskButton = (): void => {
-    Navigation.showModal({
-      screen: 'nabi.MetaMaskScreen'
-    })
+    const { onPressMetaMaskButton } = this.props
+    if (onPressMetaMaskButton) {
+      onPressMetaMaskButton()
+    }
   }
 
   handlePressBackButton = (): void => {
