@@ -1,57 +1,53 @@
 {
-  "name": "Nabi",
+  "name": "MetaMaskMobile",
   "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
+    "run-ios": "node node_modules/react-native/local-cli/cli.js run-ios",
+    "run-android": "node node_modules/react-native/local-cli/cli.js run-android",
     "test": "jest",
-    "lint": "standard | snazzy",
-    "lint-fix": "standard --fix | snazzy"
+    "tsc": "tsc --noEmit --pretty",
+    "fmt": "prettier --no-semi --single-quote --jsx-single-quote --space-before-function-paren --write '*.js' 'src/**/*.{j,t}s{,x}'",
+    "lint": "tslint -p . --type-check 'src/**/*.ts{,x}'",
+    "watch": "nodemon -e ts,tsx,js,json --watch src/ --exec 'yarn lint && yarn tsc && yarn fmt'"
   },
   "dependencies": {
-    "react": "16.0.0-alpha.6",
-    "react-native": "0.44.2",
-    "react-native-navigation": "^1.1.81",
+    "react": "16.0.0-alpha.12",
+    "react-native": "0.46.0",
+    "react-native-navigation": "^1.1.134",
     "react-native-wkwebview-reborn": "petejkim/react-native-wkwebview#a38c83174bdf6a0b0edc6f3aa7acb8885e7c2d96",
     "url": "^0.11.0"
   },
   "devDependencies": {
-    "babel-eslint": "^7.2.3",
+    "@types/jest": "^20.0.2",
+    "@types/react": "^15.0.35",
+    "@types/react-native": "^0.44.18",
     "babel-jest": "20.0.3",
-    "babel-preset-react-native": "1.9.2",
-    "flow-bin": "^0.42.0",
-    "flow-typed": "^2.1.2",
+    "babel-preset-react-native": "2.0.0",
     "jest": "20.0.4",
-    "react-test-renderer": "16.0.0-alpha.6",
-    "snazzy": "^7.0.0",
-    "standard": "^10.0.2"
-  },
-  "babel": {
-    "presets": [
-      "flow",
-      "react-native"
-    ],
-    "plugins": [
-      "transform-class-properties"
-    ]
+    "nodemon": "^1.11.0",
+    "prettier-miscellaneous": "^1.5.2-fix",
+    "react-native-typescript-transformer": "1.1.2",
+    "react-test-renderer": "16.0.0-alpha.12",
+    "ts-jest": "^20.0.6",
+    "tslint": "^5.4.3",
+    "tslint-config-standard": "^6.0.1",
+    "tslint-react": "^3.0.0",
+    "typescript": "~2.4.1"
   },
   "jest": {
-    "preset": "react-native"
-  },
-  "standard": {
-    "parser": "babel-eslint",
-    "ignore": [
-      "build/",
-      "web/metamask/",
-      "web/vendor/",
-      "flow-typed/"
-    ],
-    "envs": [
-      "node",
-      "browser"
-    ],
-    "globals": [
-      "React$Element"
+    "preset": "react-native",
+    "transform": {
+      "^.+\\.jsx?$": "<rootDir>/node_modules/babel-jest",
+      "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "json"
     ]
   }
 }

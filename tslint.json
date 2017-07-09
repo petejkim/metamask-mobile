@@ -1,0 +1,11 @@
+{
+  "extends": ["tslint-config-standard", "tslint-react"],
+  "rules": {
+    "jsx-alignment": false,
+    "jsx-boolean-value": [true, "never"],
+    "jsx-no-multiline-js": false,
+    "jsx-wrap-multiline": false,
+    "no-unused-variable": false,
+    "semicolon": false
+  }
+}
