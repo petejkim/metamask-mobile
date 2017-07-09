@@ -12,7 +12,8 @@
     "noImplicitReturns": true,
     "experimentalDecorators": true,
     "lib": [
-      "es7"
+      "es7",
+      "dom"
     ]
   },
   "filesGlob": [

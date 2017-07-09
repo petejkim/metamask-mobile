@@ -1,10 +1,11 @@
-// @flow
-import type { Window } from '../types'
+import { PortListener, Port, ConnectEvent } from './types'
 
-type PortListener = any => void
-
-const bootstrapMetaMaskBackground = function (window: Window, document: Document, manifest: {}) {
-  const makePort = function (name: string, id: string, url: string) {
+export default function bootstrapMetaMaskBackground (
+  window: Window,
+  document: Document,
+  manifest: {}
+) {
+  const makePort = function (name: string, id: string, url: string): Port {
     let disconnectListeners: PortListener[] = []
     let messageListeners: PortListener[] = []
 
@@ -74,28 +75,35 @@ const bootstrapMetaMaskBackground = function (window: Window, document: Document
     runtime: {
       onConnect: {
         addListener (listener: PortListener): void {
-          window.addEventListener('port:connect', function (evt) {
-            console.log('connecting to port: ', evt.detail.name, evt.detail.id, evt.detail.url)
-            listener(makePort(evt.detail.name, evt.detail.id, evt.detail.url))
-          }, false)
+          window.addEventListener(
+            'port:connect',
+            function (evt: ConnectEvent) {
+              console.log(
+                'connecting to port: ',
+                evt.detail.name,
+                evt.detail.id,
+                evt.detail.url
+              )
+              listener(makePort(evt.detail.name, evt.detail.id, evt.detail.url))
+            },
+            false
+          )
         }
       },
 
       onInstalled: {
-        addListener (listener: PortListener): void {}
+        addListener (_listener: PortListener): void {}
       },
 
       getManifest (): {} {
         return manifest
       },
 
-      reload () {
-      }
+      reload () {}
     },
 
     tabs: {
-      create ({ url }) {
-      }
+      create ({ url: _url }) {}
     },
 
     windows: {
@@ -108,11 +116,9 @@ const bootstrapMetaMaskBackground = function (window: Window, document: Document
         }
       },
 
-      update () {
-      },
+      update () {},
 
-      remove () {
-      },
+      remove () {},
 
       getAll (_, cb) {
         cb([])
@@ -123,11 +129,11 @@ const bootstrapMetaMaskBackground = function (window: Window, document: Document
   const script = document.createElement('script')
   script.src = '/scripts/background.js'
   script.onload = function () {
-    this.parentNode.removeChild(this)
+    if (this && this.parentNode) {
+      this.parentNode.removeChild(this)
+    }
   }
   if (document.body) {
     document.body.appendChild(script)
   }
 }
-
-export default bootstrapMetaMaskBackground

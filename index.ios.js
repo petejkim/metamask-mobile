@@ -1,4 +1,3 @@
-// @flow
-import { startApp } from './app/'
+import { startApp } from './src'
 
 startApp()

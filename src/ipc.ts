@@ -1,14 +1,8 @@
-// @flow
-import type WKWebView from 'react-native-wkwebview-reborn'
+import WKWebView from 'react-native-wkwebview-reborn'
 
 class IPC {
-  background: ?WKWebView
-  clients: { [string]: WKWebView }
-
-  constructor () {
-    this.background = undefined
-    this.clients = {}
-  }
+  private background?: WKWebView
+  private clients: { [id: string]: WKWebView } = {}
 
   setBackground (background: WKWebView): void {
     this.background = background

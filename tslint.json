@@ -5,7 +5,9 @@
     "jsx-boolean-value": [true, "never"],
     "jsx-no-multiline-js": false,
     "jsx-wrap-multiline": false,
+    "no-empty": false,
     "no-unused-variable": false,
-    "semicolon": false
+    "semicolon": false,
+    "ter-indent": false
   }
 }

@@ -1,13 +1,17 @@
-// @flow
 import url from 'url'
 
 export const normalizeUrl = function (urlString: string): string {
   const u = url.parse(urlString)
 
-  const host = u.host
-  if (u.protocol && !['http:', 'https:'].includes(u.protocol) &&
-    !u.slashes && !u.port && !Number.isNaN(parseInt(host))) {
-    u.port = host
+  if (
+    u.protocol &&
+    !['http:', 'https:'].includes(u.protocol) &&
+    !u.slashes &&
+    !u.port &&
+    u.host &&
+    !Number.isNaN(parseInt(u.host, 10))
+  ) {
+    u.port = u.host
     u.hostname = u.protocol.slice(0, -1)
     if (u.hostname && u.port) {
       u.host = `${u.hostname}:${u.port}`

@@ -13,14 +13,15 @@
     "watch": "nodemon -e ts,tsx,js,json --watch src/ --exec 'yarn lint && yarn tsc && yarn fmt'"
   },
   "dependencies": {
+    "node-libs-react-native": "petejkim/node-libs-react-native#8b5a3a9700a08f6a1d8f58819479bf4d4d589970",
     "react": "16.0.0-alpha.12",
     "react-native": "0.46.0",
     "react-native-navigation": "^1.1.134",
-    "react-native-wkwebview-reborn": "petejkim/react-native-wkwebview#a38c83174bdf6a0b0edc6f3aa7acb8885e7c2d96",
-    "url": "^0.11.0"
+    "react-native-wkwebview-reborn": "petejkim/react-native-wkwebview#a38c83174bdf6a0b0edc6f3aa7acb8885e7c2d96"
   },
   "devDependencies": {
     "@types/jest": "^20.0.2",
+    "@types/node": "^8.0.9",
     "@types/react": "^15.0.35",
     "@types/react-native": "^0.44.18",
     "babel-jest": "20.0.3",
